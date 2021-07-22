@@ -1425,7 +1425,7 @@ def track_fields(ea, reg, fields):
 def identify_register(ea, access, sig, known_regs, cpu_reg = None, known_fields = {}):
     desc = known_regs.get(sig, None)
     if desc:
-        cmt = ("[%s] " + "\n or ".join(["%s (%s)"] * (len(desc) / 2))) % ((access,) + desc)
+        cmt = ("[%s] " + "\n or ".join(["%s (%s)"] * (len(desc) // 2))) % ((access,) + desc)
         set_cmt(ea, cmt, 0)
         print(cmt)
 
@@ -1516,7 +1516,7 @@ def markup_system_insn(ea):
         markup_pstate_insn(ea)
     elif current_arch == 'aarch64' and mnem[0:3] in ("MSR", "MRS"):
         markup_aarch64_sys_insn(ea)
-    set_color(ea, CIC_ITEM, 0x00000000) # Black background, adjust to your own theme
+    set_color(ea, CIC_ITEM, 0xFFFFFFFF) # Black background, adjust to your own theme
 
 def current_arch_size():
     _, t, _ = parse_decl("void *", 0)
